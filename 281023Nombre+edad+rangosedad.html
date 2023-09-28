@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <script>
+        
+        /* Declaro todas las variables que voy a utilizar teniendo los siguientes usos...
+        : nombre -> almacenar el nombre del alumno.
+        : edad -> almacenar la edad del alumno.
+        : rango1-3[sinrango] -> almacenar cada uno de los rangos de edades.*/
+
+        let nombre;
+        let edad = 0;
+        let i = 0;
+        let rango1 = 0; let rango2 = 0; let rango3 = 0; let sinrango = 0;
+
+        // Bucle que no se cumple hasta que i supere a 5
+        while (i<5) {
+            // Pide el nombre del alumno
+            nombre = prompt(`Introduce el nombre del alumno: `);
+
+            // Si el nombre es nulo o está vacío el valor, enmarca, sino continúa.
+            if (nombre == null || nombre == "") {
+                alert(`Has introducido un nombre incorrecto.`);
+            } else {
+                // Pide la edad del alumno
+                edad = parseInt(prompt(`Introduce la edad del alumno: `));
+
+                // Comprueba que el rango de edad sea correcto, es decir que esté entre 0 y 100...
+                if (edad >= 0 && edad <= 100) {
+
+                // Printea tanto el nombre con su respectiva edad    
+                document.write(` ${nombre} tiene ${edad} años <br>`);
+
+                // Hacemos un elemento de switch para ir controlando según el caso introducido de valor en edad para separar los rangos.
+                switch(true) {
+
+                    // Sin rango: fuera de todos los rangos posteriores, mayor que 0, menor que 17, mayor que 55, menor que 99
+                    case (edad >= 0 && edad <= 17 || edad >= 55 && edad <= 99):
+                        sinrango++; break;
+
+                    // Rango 1: mayor que 18 y menor que 29
+                    case (edad >= 18 && edad <= 29):
+                        rango1++; break;
+                
+                    // Rango 2: mayor que 30 y menor que 40
+                    case (edad >= 30 && edad <= 40):
+                        rango2++; break;
+                    
+                    // Rango 3: mayor que 41 y menor que 55
+                    case (edad >= 41 && edad <= 55):
+                        rango3++; break;
+                    
+                    // En caso de que no se haya introducido nada.
+                    default:
+                        alert(`No has introducido edad...`);
+                }
+                i++;
+            } else {
+                /* Aplicamos un control que comprueba el caso de que edad sea un valor nulo, si no es un valor numeral te marca que no lo es 
+                en cambio si es un número válido pero no está fuera de rango, continúa hasta el else y enmarca.*/
+                if (isNaN(edad)) {
+                    alert(`Has introducido una edad que no es un número...`);
+                } else {
+                    alert(`Has introducido una edad incorrecta o fuera de rango: ${edad}`);
+                }
+            }
+        }
+    }
+
+    // Saca las estadísticas finales de cada uno de los rangos y la cuantía de personas acumuladas en cada uno de ellos.
+    document.write(`<br>Personas en rango 1: ${rango1} 
+    <br> Personas en rango 2: ${rango2} 
+    <br> Personas en rango 3: ${rango3} 
+    <br> Personas en sin rango: ${sinrango}`);
+
+    </script>
+</body>
+</html>
